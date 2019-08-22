@@ -43,6 +43,7 @@
 		margin-left:2%;
 		margin-bottom:5%;
 		float:left;
+		background-img
 	}
 	.carousel-control {
 	background: none !important;
@@ -56,8 +57,17 @@
 	
 
 </style>
+<script>
+	var init=function(){
+		$.ajax({
+			url:"thema/getThemas",
+			type:"post",
+		})
+	}
+	
+	$(init);
+</script>
 <header>
-
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -129,7 +139,6 @@
 	<div class="container-fluid" id="sixThema">
 			<div class="col-md-4">
 				<div class="imgbox">
-				테마1
 				</div>
 			</div>
 			<div class="col-md-4">

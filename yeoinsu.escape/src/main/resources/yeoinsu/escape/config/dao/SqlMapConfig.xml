@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="yeoinsu.escape.user.login.domain.User"/>
+		<typeAlias alias="thema" type="yeoinsu.escape.thema.domain.Thema"/>
 	</typeAliases>
 </configuration>
