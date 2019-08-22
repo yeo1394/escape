@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.user.login.dao.mapper.LoginMapper">
+	<select id="getUserInfo" parameterType="string" resultType="user">
+		select user_id userId, user_pw userPw, user_name userName, user_tel userTel,
+		user_mail userMail, user_point userPoint  from users where user_id = #{userId}
+	</select>
+	
+	<insert id="addUser" parameterType="user" >
+		insert into users values (#{userId}, #{userPw}, #{userName}, #{userTel}, #{userMail}, default) 
+	</insert>
+	
+	<select id="checkId" parameterType="string" resultType="int">
+		select count(*) from users where user_id = #{userId}
+	</select>
+</mapper>

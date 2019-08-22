@@ -1,0 +1,82 @@
+	html, body{
+		height: 100%;
+		background-color: #222;
+	
+	}
+	.container-fluid{
+		height: 100%;
+	}
+	.navbar-collapse{
+		text-align:center;
+	}
+	.navbar-nav{
+		display:inline-block;
+		float:none;
+	}
+/* 	#sideNav{
+		margin-left: 85%;
+		font-size: 3%;
+		margin-bottom:-1.5%;
+		position: absolute;
+		z-index: 9999;
+	} */
+	.navbar-nav li a {
+		font-size: 21px;
+		line-height: 40px;
+		font-family: 'Metal Mania', cursive;
+		letter-spacing: 1.5px;
+	}
+
+	.navbar-brand {
+		border:solid 2px white;
+ 		transform: translateX(-50%);
+  		left: 20%;
+  		position: absolute;
+  		line-height: 50%;
+	}
+	header{
+		background-color: #222;
+	}
+		.navbar{
+		padding-top :1%;
+		border:none;
+		margin-bottom:0%;
+	}
+	#footarea{
+		border: 1px solid gray;
+		width: 100%;
+		height:auto;
+		margin-bottom:3%; 
+		text-align: center;
+		color: gray;
+		padding: 2%;
+		clear:both;
+	}
+	div#footarea a{
+		color: white;
+	}
+	
+		#footnav{
+		width:100%;
+		position: fixed;
+		bottom: 0%;	
+		background-color : #222;
+		padding: 0%;
+	}
+	
+	#b1{
+		width: 50%;	
+		float: left;
+		background-color : #222;
+		border: 4px outset gray;
+		color: gray;
+		
+	}
+	#b2{
+		width:50%;
+		float: right;
+		background-color : #222;
+		border : 4px outset gray;
+		color: gray;
+		
+	}
