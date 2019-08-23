@@ -1,3 +1,4 @@
+<%@page import="yeoinsu.escape.thema.domain.Thema"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -31,8 +32,6 @@
 	 	height:730px;
 	 	
 	 }
-	 
-	 
 	.col-md-4{
 		height:50%;
 	}
@@ -54,17 +53,17 @@
 	div>div>div{
 		color: white;
 	}
-	
-
 </style>
 <script>
 	var init=function(){
 		$.ajax({
 			url:"thema/getThemas",
-			type:"post",
-		})
+			type:"get",
+			error : function(request,status,error){
+		        alert("error code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    }
+		});
 	}
-	
 	$(init);
 </script>
 <header>
@@ -82,7 +81,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">&emsp;GUIDE</a></li>
 				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="#">&emsp;THEMA</a></li>
+				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
 				<li><a href="#">&emsp;PARTY</a></li>
 				<li><a href="#">&emsp;NOTICE</a></li>
 				<li><a href="#">&emsp;Q&A</a></li>
@@ -101,26 +100,32 @@
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			<li data-target="#myCarousel" data-slide-to="5"></li>
 		</ol>
 	
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
+		<c:forEach var="post" items="${Themalist}" begin="0" end="0" >
 			<div class="item active">
-				테마1
-				<!-- <img src="Koala.jpg"> -->
+				${post.themaContent}
 			</div>
+		</c:forEach>
 		
+		<c:forEach var="post" items="${Themalist}" begin="1" end="4" >
 			<div class="item">
-				테마2
-				<!-- <img src="Penguins.jpg"> -->
+				${post.themaImg}
 			</div>
+		</c:forEach>
 			
+		<c:forEach var="post" items="${Themalist}" begin="5" >
 			<div class="item">
-				테마3
-				<!-- <img src="Tulips.jpg"> -->
+				${post.themaImg}
 				<div class="carousel-caption">
 				</div>
 			</div>
+		</c:forEach>
 		</div>
 		
 		<!-- Left and right controls -->
@@ -137,35 +142,13 @@
 		
 	</div>
 	<div class="container-fluid" id="sixThema">
+	<c:forEach var="post" items="${Themalist}">
 			<div class="col-md-4">
 				<div class="imgbox">
+					${post.themaImg}
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="imgbox">
-				테마2
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="imgbox">
-				테마3
-				</div>
-		</div>
-			<div class="col-md-4">
-				<div class="imgbox">
-				테마4
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="imgbox">
-				테마5
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div id="box6" class="imgbox">
-				테마6
-				</div>
-			</div>
+		</c:forEach>
 		</div>
 
 

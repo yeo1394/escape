@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.thema.dao.mapper.ThemaMapper">
+	<select id="getThemas" resultType="thema">
+		select thema_title themaTitle, thema_no themaNo, thema_level themaLevel,
+		thema_content themaContent, thema_img themaImg from themas
+	</select>
+	
+	<update id="updateThema" parameterType="thema">
+		update themas set thema_title=${themaTitle}, thema_level=${themaLevel},
+		thema_content=${themaContent}, thema_img=${themaImg} where thema_num = ${themaNum}
+	</update>
+	
+	<update id="deleteThema" parameterType="thema">
+		update themas set thema_title=null, thema_level=0},
+		thema_content=null, thema_tmg=null where thema_num = ${themaNum}
+	</update>
+</mapper>
