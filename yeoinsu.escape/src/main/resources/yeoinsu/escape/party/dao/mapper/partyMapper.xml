@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.party.dao.mapper.PartyMapper">
+	<select id="getParties" parameterType="page" resultMap="partyMap">
+		<![CDATA[
+			select * from (
+				select rownum as rnum, x.*from(
+					select * from parties
+					order by party_no desc
+				)x where rownum <= #{rowCnt}*#{currentPage}
+			) where rnum > #{rowCnt}*(#{currentPage}-1)		
+		]]>
+	</select>
+	<select id="getPage" resultType="party">
+		select count(party_no) page from parties
+	</select>
+	
+	<resultMap id="partyMap" type="party">
+		<id property="partyNo" column="party_no"/>
+		<result property="partyTitle" column="party_title"/>
+		<result property="partyWriter" column="party_writer"/>
+		<result property="partyContent" column="party_content"/>
+		<result property="partyDate" column="party_date"/>
+		<result property="partyHits" column="party_hits"/>
+	</resultMap>
+	<!-- select party_no partyNo, party_title partyTitle, party_writer partyWriter,
+		party_date partyDate, party_hits partyHits from parties -->
+</mapper>

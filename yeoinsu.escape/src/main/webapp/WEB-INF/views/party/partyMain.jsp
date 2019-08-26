@@ -1,3 +1,5 @@
+<%@page import="yeoinsu.escape.party.service.PageServiceImpl"%>
+<%@page import="yeoinsu.escape.party.domain.Page"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -27,6 +29,7 @@
 <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
 <title>escape</title>
 </head>
+
 <style>
 	@import url("<c:url value="/css/basicStyle.css"/>");
 	@import url('https://fonts.googleapis.com/css?family=Metal+Mania&display=swap');
@@ -132,22 +135,75 @@ a:hover {
 					<th>조회수</th>
 				</tr>
 			</thead>
-			<c:forEach var="post" items="${requestScope.posts}">
+			<tbody id="partyList">
+				<c:forEach var="post" items="${requestScope.posts}">
 					<tr>
 						<td>${post.partyNo}</td>
-						<td>${post.partyTitle}</td>
+						<td colspan="5">${post.partyTitle}</td>
 						<td>${post.partyWriter}</td>
 						<td>${post.partyDate}</td>
 						<td><span class="badge">${post.partyHits}</span></td>
 					</tr>
 				</c:forEach>
+			</tbody>	
 		</table>
 	<div id="addGroup">
 		<a href="03.html" class="btn btn-default">글쓰기</a>
-	</div>	
+	</div>
+	<div id="pageB" class="text-center">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev}">
+					<li><a id="${pageMaker.startPage-1}" onClick="top.location='javascript:location.reload()'">&laquo;</a></li>
+				</c:if>
+				
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					<li <c:out value="${pageMaker.page.currentPage==idx ? 'class=active' :''}"/>>
+					<a class="btn" name="pageCnt" id="${idx}" value="${idx}">${idx}</a>
+				</c:forEach>
+				
+				<c:if test="${pageMaker.next}">
+					<li><a id="${pageMaker.endPage+1}" onClick="top.location='javascript:location.reload()'">&raquo;</a></li>
+				</c:if>
+			</ul>
+		</div>		
 	</div>
 </body>
-
+<script>
+var init = function () {
+	$("#pageB a").bind("click",function(){
+		$("#partyList").empty();
+		var id= $(this).attr('id');
+		$.ajax({
+			url:"page/list",
+			data: {pageCnt :id},
+			success: function(partys){
+				if(partys.length>0){
+					var partyList =[];
+					$(partys).each(function(idx,party){
+						partyList.push(	
+							'<tr>'+
+								'<td>'+party.partyNo+'</td>'+
+								'<td colspan="5">'+party.partyTitle+'</td>'+
+								'<td>'+party.partyWriter+'</td>'+
+								'<td>'+party.partyDate+'</td>'+
+								'<td>'+party.partyHits+'</td>'+
+							'<tr>'
+						);
+					});
+					$('#partyList').append(partyList.join(''));
+				}else {
+					tellMsg('사용자가 없습니다.');
+				}					
+			},
+			error:function(a,b,errMsg) {
+				alert(errMsg,"error");
+			}
+		});
+	});
+	
+};
+$(init);
+</script>
 <div class="container"  id="footnav">
 	<a id="b1" type="button" class="btn btn-default" href="../main.html"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
 	<a id="b2" type="button" class="btn btn-default" href="../user/11.html"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>

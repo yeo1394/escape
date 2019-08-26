@@ -10,7 +10,16 @@ public class Party {
 	private int partyHits;
 	private String partyContent;
 	private String userId;
+	private int page;
 	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
 	public Party(){}
 	
 	public int getPartyNo() {

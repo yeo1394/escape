@@ -4,6 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="yeoinsu.escape.user.login.domain.User"/>
-		<typeAlias alias="party" type="yeoinsu.escape.party.domain.Party" />
+		<typeAlias alias="party" type="yeoinsu.escape.party.domain.Party"/>
+		<typeAlias alias="page" type="yeoinsu.escape.party.domain.Page"/>
 	</typeAliases>
 </configuration>
