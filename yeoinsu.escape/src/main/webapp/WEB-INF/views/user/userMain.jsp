@@ -165,7 +165,7 @@
 
 <div class="container"  id="footnav">
 	<a id="b1" type="button" class="btn btn-default" href="main"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>
+	<a id="b2" type="button" class="btn btn-default" href="login/correct"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>
 </div>
 
 

@@ -1,3 +1,4 @@
+<%@page import="yeoinsu.escape.user.login.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,7 +17,7 @@
 	@import url('https://fonts.googleapis.com/css?family=Poor+Story&display=swap');
 	@import url("<c:url value="/css/basicStyle.css"/>");
 	@import url('https://fonts.googleapis.com/css?family=Metal+Mania&display=swap');
-
+	
 	input#userId{
 		margin-bottom:5%;
 	}
@@ -98,10 +99,6 @@
 		margin-top: 3.4%;
 	}
 	
-	#checkId{
-		margin-top: -7%;
-	}
-	
 	#checkPw{
 		margin-top: -7%;
 	}
@@ -111,69 +108,48 @@
 	}
 </style>
 <script>
-	var isCheck = function() {
-		var result = false;
-		if ($('#checkId').text()!="사용중인 아이디입니다." && $('#checkPw').text()!="비밀번호가 다릅니다.") {
-			result = true;
+<% 
+User nowUser = (User) session.getAttribute("nowUser");
+%>
+var isCheck = function() {
+	var result = false;
+	if ($('#checkPw').text()!="비밀번호가 다릅니다.") {
+		result = true;
+	}
+	return result;
+}
+
+var init = function() {
+	$("#userTel, #email1, #email2, #userPw, #userPw2").blur(function(){
+		var btn = document.getElementById('correct');
+		var pw1 = $("#userPw").val();
+		var pw2 = $("#userPw2").val();
+		if(pw1!=pw2){
+			btn.disabled = true;
+			$("#checkPw").text("비밀번호가 다릅니다.");
+			$("#checkPw").css("color","red");
+		}else{
+			btn.disabled = false;
+			$("#checkPw").text("");
 		}
-		return result;
-	}
+	});	
 	
-	var init = function() {
-		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
-			var btn = document.getElementById('join');
-			var userId = $("#userId").val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/login/userIdCheck?userId='+ userId,
-				type : 'post',
-				cache: false,
-				success : function(checkCount){
-					if(checkCount==1){
-						btn.disabled = true;
-						$("#checkId").text("사용중인 아이디입니다.");
-						$("#checkId").css("color","red");
-					}else{
-						btn.disabled = false;
-						$("#checkId").text("");
-					}
-				},
-				error:function(a,b,errMsg){
-					alert("시스템 오류","고객센터에 문의해주세요.","error");
-				}
-			});
-		});
-		
-		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
-			var btn = document.getElementById('join');
-			var email1 = $("#email1").val();
-			var email2 = $("#email2").val();
-			var pw1 = $("#userPw").val();
-			var pw2 = $("#userPw2").val();
-			if(pw1!=pw2){
-				btn.disabled = true;
-				$("#checkPw").text("비밀번호가 다릅니다.");
-				$("#checkPw").css("color","red");
-			}else{
-				btn.disabled = false;
-				$("#checkPw").text("");
-			}
-		});	
-		
-		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
-			var email1 = $("#email1").val();
-			var email2 = $("#email2").val();
-			var nowMail = email1 +'@'+ email2;
-			$("#userMail").val(nowMail);
-		});
-	}
-	
-	$(init);
+	$("#userTel, #email1, #email2, #userPw, #userPw2").blur(function(){
+		var email1 = $("#email1").val();
+		var email2 = $("#email2").val();
+		var nowMail = email1 +'@'+ email2;
+		$("#userMail").val(nowMail);
+	});
+}
+
+$(init);
 </script>
 <header>
+	
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand center-block" href="../main">로고</a>
+			<a class="navbar-brand center-block" href="../userMain">로고</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -182,12 +158,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="#">&emsp;GUIDE</a></li>
-				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="#">&emsp;THEMA</a></li>
-				<li><a href="#">&emsp;PARTY</a></li>
-				<li><a href="#">&emsp;NOTICE</a></li>
-				<li><a href="#">&emsp;Q&A</a></li>
+				<li><a href="../info/01.html">&emsp;GUIDE</a></li>
+				<li><a href="../booking/01.html">&emsp;BOOKING</a></li>
+				<li><a href="../thema/01.html">&emsp;THEMA</a></li>
+				<li><a href="../group/01.html">&emsp;PARTY</a></li>
+				<li><a href="../notice/01.html">&emsp;NOTICE</a></li>
+				<li><a href="../question/01.html">&emsp;Q&A</a></li>
 			</ul>
 		</div>
 	</div>
@@ -198,12 +174,11 @@
 		<div class="row">
 				<div class="col-md-6 col-md-offset-3 text-center">
 					<div id="title">
-						<h1>회원가입</h1><h4>|정보입력</h4>
+						<h1>계정관리</h1><h4>|정보수정</h4>
 					</div>
-					<form id="userInfo" action="joinUser" method="post">
-						<input name="userName" id="userName" type="text" placeholder="이름 입력" maxlength="4" autocomplete="off" required/><hr>						
-						<input name="userId" id="userId" type="text" placeholder="아이디 입력" maxlength="15" autocomplete="off" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" required/>
-						<div class="check_font" id="checkId"></div><hr id="id">
+					<form id="userInfo" action="correctUser" method="post">
+						<input name = "userName" value="<%=nowUser.getUserName()%>" readonly/><hr>						
+						<input name = "userId" value="<%=nowUser.getUserId()%>" readonly/><hr>
 						<input name="userPw" id="userPw" type="password" maxlength="20" placeholder="비밀번호 입력" required/><hr>
 						<input id="userPw2" type="password" maxlength="20" placeholder="비밀번호 재입력" required/>
 						<div class="check_font" id="checkPw"></div><hr id="id">
@@ -218,9 +193,9 @@
 						</span>
 						<input type="hidden" id="userMail" name="userMail"/>
 						<hr>
-						<input name="userTel" id="userTel" type="text"  pattern=".{11,11}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" autocomplete="off" placeholder="핸드폰 번호 11자리 입력(-제외)" required/><hr><br>
-						<button type="submit" id="join" class="btn btn-default" onClick="sub()">다음</button>&emsp;&emsp;&emsp;
-						<a type="button" class="btn btn-default" href="../main">취소</a>
+						<input name="userTel" id="userTel" type="text"  pattern=".{11,11}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" autocomplete="off" value="<%=nowUser.getUserTel()%>" required/><hr><br>
+						<button type="submit" id="correct" class="btn btn-default">정보 수정</button>&emsp;&emsp;&emsp;
+						<a type="button" class="btn btn-default" href="secede">회원 탈퇴</a>
 						<br><br>
 					</form>
 				</div>
@@ -229,14 +204,14 @@
 </body>
 
 <div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="../login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
+	<a id="b1" type="button" class="btn btn-default" href="../main"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
+	<a id="b2" type="button" class="btn btn-default" href="correct"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>
 </div>
 
 <footer>
 	<div class="container-fluid">
 		<div id="footarea">
-			<a href="#">오시는길</a>&nbsp;|&nbsp;<a href="#">게임방법</a><br><br>
+			<a href="../info/02.html">오시는길</a>&nbsp;|&nbsp;<a href="../info/01.html">게임방법</a><br><br>
 			
 			<p><b>대표이사&nbsp;</b> 여인수&emsp;|&emsp;<b>대표전화&nbsp;</b> 010-0000-0000</p>	
 			<p><b>사업자등록번호 &nbsp;</b> 000-00-00000&emsp;|&emsp;<b>본사&nbsp;</b>(주)인천광역시 계양구 효성동</p>

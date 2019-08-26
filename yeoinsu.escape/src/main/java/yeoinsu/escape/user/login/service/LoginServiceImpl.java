@@ -21,5 +21,13 @@ public class LoginServiceImpl implements LoginService{
 	public int userIdCheck(String userId) {
 		return loginDao.checkId(userId);
 	}
+
+	public boolean correctUser(User user) {
+		return loginDao.updateUser(user) > 0;
+	}
+
+	public boolean secedeUser(String userId) {
+		return loginDao.deleteUser(userId) > 0;
+	}
 	
 }
