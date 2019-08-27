@@ -44,7 +44,7 @@
 		float:left;
 		background-img
 	}
-	.carousel-control {
+	.carousel-control {서버시작시 정보 불러오기
 	background: none !important;
 	}	
 	#heightAuto{
@@ -54,18 +54,6 @@
 		color: white;
 	}
 </style>
-<script>
-	var init=function(){
-		$.ajax({
-			url:"thema/getThemas",
-			type:"get",
-			error : function(request,status,error){
-		        alert("error code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		    }
-		});
-	}
-	$(init);
-</script>
 <header>
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
@@ -109,7 +97,7 @@
 		<div class="carousel-inner">
 		<c:forEach var="post" items="${Themalist}" begin="0" end="0" >
 			<div class="item active">
-				${post.themaContent}
+				${post.themaImg}
 			</div>
 		</c:forEach>
 		
@@ -151,16 +139,8 @@
 		</c:forEach>
 		</div>
 
-
-
 </body>
-
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="login/agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
-</div>
-
-
+<%@include file ="../resource/include/footnav.jsp" %>
 <footer>
 	<div class="container-fluid">
 		<div id="footarea">

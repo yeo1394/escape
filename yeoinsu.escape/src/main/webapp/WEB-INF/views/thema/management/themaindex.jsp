@@ -70,6 +70,10 @@
 		height:auto;
 		/*  */
 	}
+	img{
+		width:100%;
+		height:100%;
+	}
 /* 	#logogo{
 		width: 200px;
 		height: 100px;
@@ -105,6 +109,9 @@
 	}
 		
 </style>
+<script>
+
+</script>
 <header>
 
 <nav class="navbar navbar-inverse">
@@ -124,7 +131,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">&emsp;GUIDE</a></li>
 				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="#">&emsp;THEMA</a></li>
+				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
 				<li><a href="#">&emsp;PARTY</a></li>
 				<li><a href="#">&emsp;NOTICE</a></li>
 				<li><a href="#">&emsp;Q&A</a></li>
@@ -146,7 +153,9 @@
 				<div class="row">
 					<div class="col-md-10" id="title">${post.themaTitle}</div>
 					<div class="col-md-2" id="number">${post.themaNo}</div>
-					<div class="col-md-12" id="Dif">${post.themaLevel}</div>
+					<div class="col-md-12" id="Dif">
+					<img src="<c:url value="/img/star${post.themaLevel}.png"/>"/>
+					</div>
 					<div class="col-md-12" id="ex">${post.themaContent}</div>
 				</div>
 				<button class="btn btn-default" id="check">예약하기</button>
@@ -155,12 +164,11 @@
 	</div>
 </c:forEach>
 	</body>
-
+	
 <div class="container"  id="footnav">
 	<a id="b1" type="button" class="btn btn-default" href="../main.html"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
 	<a id="b2" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>
 </div>
-
 
 <footer>
 	<div class="container-fluid">

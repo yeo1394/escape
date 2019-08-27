@@ -57,4 +57,10 @@ public class LoginController {
 		request.setAttribute("name", user.getUserName());
 		return "user/join/complete";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout( HttpSession session){
+		session.invalidate();
+		return "redirect:user/login";
+	}
 }
