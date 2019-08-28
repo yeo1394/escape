@@ -18,6 +18,7 @@
 	
 	<context:component-scan base-package="yeoinsu.escape"/>
 	<mvc:annotation-driven/>
+	<mvc:resources mapping="/js/**" location="/WEB-INF/resource/js/"/>
 	<mvc:resources mapping="/css/**" location="/WEB-INF/resource/css/"/>
 	<mvc:resources mapping="/img/**" location="/WEB-INF/resource/img/"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -47,6 +48,20 @@
 			<list>
 				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 			</list>
+		</property>
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="username" value="dlstn1030@gmail.com"/>
+		<property name="password" value="cwiabtbvhyszzzpq"/>
+		<property name="javaMailProperties">
+		<props>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtp.host">smtp.gmail.com</prop>
+			<prop key="mail.smtp.port">465</prop>
+			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			<prop key="mail.smtp.socketFactory.fallback">false</prop>
+			<prop key="mail.smtp.auth">true</prop>
+		</props>
 		</property>
 	</bean>
 </beans>

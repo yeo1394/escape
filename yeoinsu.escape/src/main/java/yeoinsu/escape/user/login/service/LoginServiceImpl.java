@@ -29,5 +29,9 @@ public class LoginServiceImpl implements LoginService{
 	public boolean secedeUser(String userId) {
 		return loginDao.deleteUser(userId) > 0;
 	}
+
+	public String[] getMails() {
+		return loginDao.getMails();
+	}
 	
 }

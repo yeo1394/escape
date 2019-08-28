@@ -23,4 +23,8 @@
 	<delete id="deleteUser" parameterType="string">
 		delete from users where user_id = #{userId}
 	</delete>
+	
+	<select id="getMails" resultType="string">
+		select user_mail from users
+	</select>
 </mapper>

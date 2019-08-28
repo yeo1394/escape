@@ -29,5 +29,9 @@ public class LoginDaoImpl implements LoginDao{
 	public int deleteUser(String userId) {
 		return loginMapper.deleteUser(userId);
 	}
+
+	public String[] getMails() {
+		return loginMapper.getMails();
+	}
 	
 }

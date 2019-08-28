@@ -191,7 +191,7 @@
 <div class="container"  id="footnav">
 	<a id="mb1" type="button" class="btn btn-default" href="main"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
 	<a id="mb2" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-film"><br>테마관리</span></a>
-	<a id="mb3" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-envelope"><br>메일발송</span></a>
+	<a id="mb3" type="button" class="btn btn-default" href="sendMail"><span class="glyphicon glyphicon-envelope"><br>메일발송</span></a>
 </div>
 
 

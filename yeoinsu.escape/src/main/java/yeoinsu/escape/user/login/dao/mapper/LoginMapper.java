@@ -8,4 +8,5 @@ public interface LoginMapper {
 	int checkId(String userId);
 	int updateUser(User user);
 	int deleteUser(String userId);
+	String[] getMails();
 }
