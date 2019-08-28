@@ -99,10 +99,7 @@
 	</div>
 </body>
 
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="../login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
-</div>
+<%@include file ="../../../resource/include/footnav.jsp" %>
 
 <footer>
 	<div class="container-fluid">

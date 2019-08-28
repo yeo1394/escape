@@ -6,6 +6,7 @@ public class Thema {
 	private char themaLevel;
 	private String themaContent;
 	private String themaImg;
+	private int themaPrice;
 	
 	public Thema(){}
 	

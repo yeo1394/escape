@@ -86,7 +86,7 @@
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand center-block" href="../main.html">로고</a>
+			<a class="navbar-brand center-block" href="../main">로고</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -124,10 +124,7 @@
 	</div>
 </body>
 
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="../login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
-</div>
+<%@include file ="../../../resource/include/footnav.jsp" %>
 
 <footer>
 	<div class="container-fluid">

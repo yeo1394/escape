@@ -79,9 +79,9 @@
 						$("#checkLogin").text("등록되지 않은 아이디입니다.");
 						$("#checkLogin").css("color","red");
 					}else if(user.userId=="admin" && $("#pw").val()=="admin"){
-						location.href="managerMain";
+						location.href="loginMain";
 					}else if($('#pw').val()==user.userPw){
-						location.href="userMain";
+						location.href="loginMain";
 					}else{
 						$("#checkLogin").text("비밀번호가 다릅니다.");
 						$("#checkLogin").css("color","red");
@@ -143,10 +143,7 @@
 	</div>
 </body>
 
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="login/agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
-</div>
+<%@include file ="../../resource/include/footnav.jsp" %>
 
 <footer>
 	<div class="container-fluid">

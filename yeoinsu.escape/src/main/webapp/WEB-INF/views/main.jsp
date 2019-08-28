@@ -44,7 +44,7 @@
 		float:left;
 		background-img
 	}
-	.carousel-control {서버시작시 정보 불러오기
+	.carousel-control {
 	background: none !important;
 	}	
 	#heightAuto{
@@ -140,7 +140,9 @@
 		</div>
 
 </body>
+
 <%@include file ="../resource/include/footnav.jsp" %>
+
 <footer>
 	<div class="container-fluid">
 		<div id="footarea">

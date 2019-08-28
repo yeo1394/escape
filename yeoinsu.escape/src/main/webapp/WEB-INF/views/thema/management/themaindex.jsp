@@ -118,7 +118,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 		<div id="logogo">
-			<a href="../main.html"><img id="logoimg" alt="logo" src="../img/key20.png" width="200px" height="100px">
+			<a href="../main"><img id="logoimg" alt="logo" src="../img/key20.png" width="200px" height="100px">
 			</a>
 		</div>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -154,7 +154,7 @@
 					<div class="col-md-10" id="title">${post.themaTitle}</div>
 					<div class="col-md-2" id="number">${post.themaNo}</div>
 					<div class="col-md-12" id="Dif">
-					<img src="<c:url value="/img/star${post.themaLevel}.png"/>"/>
+						<img src="<c:url value="/img/star0${post.themaLevel}.png"/>"/>
 					</div>
 					<div class="col-md-12" id="ex">${post.themaContent}</div>
 				</div>
@@ -165,10 +165,7 @@
 </c:forEach>
 	</body>
 	
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="../main.html"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>
-</div>
+<%@include file ="../../../resource/include/footnav.jsp" %>
 
 <footer>
 	<div class="container-fluid">

@@ -120,7 +120,7 @@
 	}
 	
 	var init = function() {
-		$("#userId").blur(function(){
+		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
 			var btn = document.getElementById('join');
 			var userId = $("#userId").val();
 			$.ajax({
@@ -143,7 +143,7 @@
 			});
 		});
 		
-		$("#userPw, #userPw2").blur(function(){
+		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
 			var btn = document.getElementById('join');
 			var email1 = $("#email1").val();
 			var email2 = $("#email2").val();
@@ -211,14 +211,14 @@
 						<span id="gol">
 							@<select id="email2" > 
 								<option value="naver.com" selected>naver.com</option>
-								<option value="hanmail.net">hanmail.net</option>
+								<option value="daum.net">daum.net</option>
 								<option value="nate.com">nate.com</option>
 								<option value="gmail.com">gmail.com</option>
 							</select>
 						</span>
 						<input type="hidden" id="userMail" name="userMail"/>
 						<hr>
-						<input name="userTel" id="userTel" type="text"  pattern=".{11,11}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" autocomplete="off" placeholder="핸드폰 번호 11자리 입력(-제외)" required/><hr><br>
+						<input name="userTel" id="userTel" type="text"  maxlength="11" pattern=".{11,11}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" autocomplete="off" placeholder="핸드폰 번호 11자리 입력(-제외)" required/><hr><br>
 						<button type="submit" id="join" class="btn btn-default" onClick="sub()">다음</button>&emsp;&emsp;&emsp;
 						<a type="button" class="btn btn-default" href="../main">취소</a>
 						<br><br>
@@ -228,10 +228,7 @@
 	</div>
 </body>
 
-<div class="container"  id="footnav">
-	<a id="b1" type="button" class="btn btn-default" href="../login"><span class="glyphicon glyphicon-log-in"><br>로그인</span></a>
-	<a id="b2" type="button" class="btn btn-default" href="agreement"><span class="glyphicon glyphicon-user"><br>회원가입</span></a>
-</div>
+<%@include file ="../../../resource/include/footnav.jsp" %>
 
 <footer>
 	<div class="container-fluid">

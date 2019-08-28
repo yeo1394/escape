@@ -6,4 +6,7 @@ public interface LoginDao {
 	User getUserInfo(String userId);
 	int addUser(User user);
 	int checkId(String userId);
+	int updateUser(User user);
+	int deleteUser(String userId);
+	String[] getMails();
 }

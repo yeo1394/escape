@@ -4,7 +4,7 @@
 <mapper namespace="yeoinsu.escape.thema.dao.mapper.ThemaMapper">
 	<select id="getThemas" resultType="thema">
 		select thema_title themaTitle, thema_no themaNo, thema_level themaLevel,
-		thema_content themaContent, thema_img themaImg from themas
+		thema_content themaContent, thema_img themaImg, thema_price themaPrice from themas
 	</select>
 	
 	<update id="updateThema" parameterType="thema">
