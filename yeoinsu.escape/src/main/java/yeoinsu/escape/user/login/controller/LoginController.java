@@ -89,7 +89,7 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout( HttpSession session){
 		session.invalidate();
-		return "redirect:user/login";
+		return "redirect:../main";
 	}
 	
 	
