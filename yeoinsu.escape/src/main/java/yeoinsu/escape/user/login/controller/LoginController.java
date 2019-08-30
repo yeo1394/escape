@@ -57,4 +57,40 @@ public class LoginController {
 		request.setAttribute("name", user.getUserName());
 		return "user/join/complete";
 	}
+	
+	@RequestMapping("/correct")
+	public String correct(){
+		return "user/correct/correct";
+	}
+	
+	@RequestMapping(value="/correctUser", method = RequestMethod.POST)
+	public String correctUser(User user, HttpServletRequest request, HttpSession session) {
+		loginService.correctUser(user);
+		request.setAttribute("name", user.getUserName());
+		User updateUser = loginService.getUser(user.getUserId());
+		if(user != null && !user.equals("")){
+			session.setAttribute("nowUser", updateUser);
+		}
+		return "user/correct/complete";
+	}
+	
+	@RequestMapping("/secede")
+	public String secede(){
+		return "user/secede/secede";
+	}
+	
+	@RequestMapping(value="/secedeUser", method = RequestMethod.POST)
+	public String secedeUser(String userId, HttpSession session) {
+		loginService.secedeUser(userId);
+		session.setAttribute("nowUser", null);
+		return "user/secede/complete";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout( HttpSession session){
+		session.invalidate();
+		return "redirect:../main";
+	}
+	
+	
 }

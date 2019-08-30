@@ -55,8 +55,7 @@
 	div#footarea a{
 		color: white;
 	}
-	
-		#footnav{
+	#footnav{
 		width:100%;
 		position: fixed;
 		bottom: 0%;	
@@ -80,3 +79,27 @@
 		color: gray;
 		
 	}
+	#mb1{
+      width: 50%;   
+      float: left;
+      background-color : #222;
+      border: 4px outset gray;
+      color: gray;
+      
+   }
+   #mb2{
+      width:25%;
+      float: left;
+      background-color : #222;
+      border : 4px outset gray;
+      color: gray;
+      
+   }
+   #mb3{
+      width:25%;
+      float: right;
+      background-color : #222;
+      border : 4px outset gray;
+      color: gray;
+      
+   }
