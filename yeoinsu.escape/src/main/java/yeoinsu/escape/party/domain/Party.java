@@ -11,7 +11,32 @@ public class Party {
 	private String partyContent;
 	private String userId;
 	private int page;
+	private String partyThema;
+	private String partyTime;
 	
+	public Party(String partyThema,String partyTime, String partyContent, String userId) {
+		this.partyThema = partyThema;
+		this.partyTime = partyTime;
+		this.partyContent = partyContent;
+		this.userId = userId;
+	}
+	
+	public String getPartyThema() {
+		return partyThema;
+	}
+
+	public void setPartyThema(String partyThema) {
+		this.partyThema = partyThema;
+	}
+
+	public String getPartyTime() {
+		return partyTime;
+	}
+
+	public void setPartyTime(String partyTime) {
+		this.partyTime = partyTime;
+	}
+
 	public int getPage() {
 		return page;
 	}

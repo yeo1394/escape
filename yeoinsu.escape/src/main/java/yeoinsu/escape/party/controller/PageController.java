@@ -28,7 +28,16 @@ public class PageController {
 		Party party = partyService.getPage();
 		PageServiceImpl pageServiceImpl = new PageServiceImpl(5,party.getPage(),page);
 		request.setAttribute("pageMaker", pageServiceImpl);
-		session.setAttribute("pageMaker", pageServiceImpl);
 		return partyService.getParties(page);
+	}
+	
+	@RequestMapping("/paging")
+	@ResponseBody
+	public PageServiceImpl getPaging(HttpServletRequest request,Integer pageCnt,
+			HttpSession session) {
+		Page page = new Page(pageCnt);
+		Party party = partyService.getPage();
+		PageServiceImpl pageServiceImpl = new PageServiceImpl(5,party.getPage(),page);
+		return pageServiceImpl;
 	}
 }

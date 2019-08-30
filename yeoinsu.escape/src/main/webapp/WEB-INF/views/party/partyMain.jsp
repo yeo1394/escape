@@ -28,6 +28,84 @@
 <link href="https://fonts.googleapis.com/css?family=Black+And+White+Picture|Metal+Mania&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
 <title>escape</title>
+<script>
+var init = function () {
+	$(document).on("click","#pageB a",function(){
+		$("#partyList").empty();
+		var id= $(this).attr('id');
+		$.ajax({
+			url:"page/list",
+			data: {pageCnt :id},
+			 async: false,
+			success: function(partys){
+				if(partys.length>0){
+					var partyList =[];
+					$(partys).each(function(idx,party){
+						partyList.push(	
+							'<tr>'+
+								'<td>'+party.partyNo+'</td>'+
+								'<td colspan="5"><a id="tdId" data-value='+party.partyNo+'" href="party/in?pageCnt='+party.partyNo+'">'+party.partyTitle+'</a></td>'+
+								'<td>'+party.partyWriter+'</td>'+
+								'<td>'+party.partyDate+'</td>'+
+								'<td><span class="badge">'+party.partyHits+'</span></td>'+
+							'<tr>'
+						);
+					});
+					$('#partyList').append(partyList.join(''));
+				}else {
+					tellMsg('사용자가 없습니다.');
+				}					
+			},
+			error:function(a,b,errMsg) {
+				alert(errMsg,"error");
+			}
+		});
+		
+		$.ajax({
+			url:"page/paging",
+			data: {pageCnt :id},
+			 async: false,
+			success: function(page){
+				var i = 0;
+				console.log(page.totRowCnt);
+				 $("#pageB").empty();
+					if(page != null){
+					var start = Number(page.startPage)-1
+					var end = Number(page.endPage)+1
+					var a = '<ul class="pagination">'
+					if(page.prev==true){
+						a+='<li><a name="pageCnt" id="'+start+'">&laquo;</a></li>'
+					}
+					
+						
+					for(i =page.startPage;i <=page.endPage;i++){
+						if(i > Math.ceil(page.totRowCnt/10)) {
+							break;
+						}
+						if(page.page.currentPage == i){
+							a+='<li class="active">'
+						}else {
+							a+='<li>'
+						}
+						a+='<a class="btn" name="pageCnt" id="'+i+'" value="'+i+'">'+i+'</a>'
+						a+='</li>'
+					}
+					if(page.next==true){
+						a+='<li><a id="'+end+'">&raquo;</a></li>'
+					}
+					a+='</ul>' 
+					$('#pageB').html(a);
+				}else {
+				} 					
+			},
+			error:function(a,b,errMsg) {
+				alert(errMsg,"error");
+			}
+		});
+	});
+};
+$(init);
+</script>
 </head>
 
 <style>
@@ -96,8 +174,10 @@ a:hover {
 	color: white;
 }
 </style>
+<%if(session.getAttribute("nowUser") == null){ %>
+	<c:redirect url="/login"/>
+<%} %>
 <header>
-
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -139,7 +219,7 @@ a:hover {
 				<c:forEach var="post" items="${requestScope.posts}">
 					<tr>
 						<td>${post.partyNo}</td>
-						<td colspan="5">${post.partyTitle}</td>
+						<td colspan="5"><a id="tdId" data-value=${post.partyNo} href="party/in?pageCnt=${post.partyNo}">${post.partyTitle}</a></td>
 						<td>${post.partyWriter}</td>
 						<td>${post.partyDate}</td>
 						<td><span class="badge">${post.partyHits}</span></td>
@@ -147,63 +227,28 @@ a:hover {
 				</c:forEach>
 			</tbody>	
 		</table>
-	<div id="addGroup">
-		<a href="03.html" class="btn btn-default">글쓰기</a>
-	</div>
-	<div id="pageB" class="text-center">
+	
+		<div id="pageB" class="text-center">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">
-					<li><a id="${pageMaker.startPage-1}" onClick="top.location='javascript:location.reload()'">&laquo;</a></li>
+					<li><a id="${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
 				
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 					<li <c:out value="${pageMaker.page.currentPage==idx ? 'class=active' :''}"/>>
 					<a class="btn" name="pageCnt" id="${idx}" value="${idx}">${idx}</a>
 				</c:forEach>
-				
 				<c:if test="${pageMaker.next}">
-					<li><a id="${pageMaker.endPage+1}" onClick="top.location='javascript:location.reload()'">&raquo;</a></li>
+					<li><a id="${pageMaker.endPage+1}">&raquo;</a></li>
 				</c:if>
 			</ul>
-		</div>		
+		</div>
+	<div id="addGroup">
+		<a href="party/add" class="btn btn-default">글쓰기</a>
+	</div>		
 	</div>
 </body>
-<script>
-var init = function () {
-	$("#pageB a").bind("click",function(){
-		$("#partyList").empty();
-		var id= $(this).attr('id');
-		$.ajax({
-			url:"page/list",
-			data: {pageCnt :id},
-			success: function(partys){
-				if(partys.length>0){
-					var partyList =[];
-					$(partys).each(function(idx,party){
-						partyList.push(	
-							'<tr>'+
-								'<td>'+party.partyNo+'</td>'+
-								'<td colspan="5">'+party.partyTitle+'</td>'+
-								'<td>'+party.partyWriter+'</td>'+
-								'<td>'+party.partyDate+'</td>'+
-								'<td>'+party.partyHits+'</td>'+
-							'<tr>'
-						);
-					});
-					$('#partyList').append(partyList.join(''));
-				}else {
-					tellMsg('사용자가 없습니다.');
-				}					
-			},
-			error:function(a,b,errMsg) {
-				alert(errMsg,"error");
-			}
-		});
-	});
-	
-};
-$(init);
-</script>
+
 <div class="container"  id="footnav">
 	<a id="b1" type="button" class="btn btn-default" href="../main.html"><span class="glyphicon glyphicon-log-out"><br>로그아웃</span></a>
 	<a id="b2" type="button" class="btn btn-default" href="../user/11.html"><span class="glyphicon glyphicon-asterisk"><br>계정관리</span></a>

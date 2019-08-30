@@ -22,31 +22,27 @@ public class PageServiceImpl implements PageService {
 	public PageServiceImpl(){}
 	
 	public PageServiceImpl(int pageNumCnt,int p, Page page) {
-		this.pageDao = new PageDaoImpl();
 		this.totRowCnt = p;
 		this.pageNumCnt = pageNumCnt;
 		this.page = page;
 		init();
 	}
 	
-	private int getTotRowCnt() {
-		return pageDao.getTotRowCnt();
+	public int getTotRowCnt() {
+		return totRowCnt;
 	}
 	
 	private void init() {
 		endPage = (int)(Math.ceil(page.getCurrentPage()/(double)pageNumCnt)*pageNumCnt);
 		startPage = (endPage-pageNumCnt)+1;
 		int lastEndPage = (int)(Math.ceil(totRowCnt/(double)page.getCurrentPage()));
-		System.out.println(lastEndPage);
 		
 		if(endPage > lastEndPage) {
 			endPage = lastEndPage;
 		}
 		
 		prev = startPage==1?false:true;
-		System.out.println(prev);
 		next = endPage*page.getRowCnt() >= totRowCnt?false:true;
-		System.out.println(next);
 	}
 
 	@Override
@@ -73,4 +69,14 @@ public class PageServiceImpl implements PageService {
 	public int getEndPage() {
 		return endPage;
 	}
+	
+	public int getPageNumCnt() {
+		return pageNumCnt;
+	}
+
+	public void setTotRowCnt(int totRowCnt) {
+		this.totRowCnt = totRowCnt;
+	}
+	
+	
 }
