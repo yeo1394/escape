@@ -112,8 +112,8 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">&emsp;GUIDE</a></li>
 				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="#">&emsp;THEMA</a></li>
-				<li><a href="#">&emsp;PARTY</a></li>
+				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
+				<li><a href="party">&emsp;PARTY</a></li>
 				<li><a href="#">&emsp;NOTICE</a></li>
 				<li><a href="#">&emsp;Q&A</a></li>
 		</ul>

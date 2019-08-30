@@ -67,12 +67,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="../info/01.html">&emsp;GUIDE</a></li>
-				<li><a href="../booking/01.html">&emsp;BOOKING</a></li>
-				<li><a href="../thema/01.html">&emsp;THEMA</a></li>
-				<li><a href="01.html">&emsp;PARTY</a></li>
-				<li><a href="../notice/01.html">&emsp;NOTICE</a></li>
-				<li><a href="01.html">&emsp;Q&A</a></li>
+				<li><a href="#">&emsp;GUIDE</a></li>
+				<li><a href="#">&emsp;BOOKING</a></li>
+				<li><a href="../thema/themaindex">&emsp;THEMA</a></li>
+				<li><a href="../party">&emsp;PARTY</a></li>
+				<li><a href="#">&emsp;NOTICE</a></li>
+				<li><a href="#">&emsp;Q&A</a></li>
 			</ul>
 		</div>
 	</div>
