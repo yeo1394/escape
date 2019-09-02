@@ -10,6 +10,24 @@ public class Thema {
 	
 	public Thema(){}
 	
+	public Thema(String themaTitle, char themaNo, char themaLevel, String themaContent,
+			String themaImg, int themaPrice){
+		this.themaTitle = themaTitle;
+		this.themaNo = themaNo;
+		this.themaLevel = themaLevel;
+		this.themaContent = themaContent;
+		this.themaImg = themaImg;
+		this.themaPrice = themaPrice;
+	}
+	
+	public int getThemaPrice() {
+		return themaPrice;
+	}
+
+	public void setThemaPrice(int themaPrice) {
+		this.themaPrice = themaPrice;
+	}
+
 	public String getThemaTitle() {
 		return themaTitle;
 	}

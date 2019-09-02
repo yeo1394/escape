@@ -6,6 +6,8 @@ import yeoinsu.escape.thema.domain.Thema;
 
 public interface ThemaMapper {
 	List<Thema> getThemas();
-	int updateThema();
-	int deleteThema();
+	int updateThema(Thema thema);
+	int deleteThema(Thema thema);
+	
+	Thema getThema(char themaNo);
 }

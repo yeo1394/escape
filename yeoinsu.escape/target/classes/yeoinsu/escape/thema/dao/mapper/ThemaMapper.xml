@@ -8,12 +8,14 @@
 	</select>
 	
 	<update id="updateThema" parameterType="thema">
-		update themas set thema_title=${themaTitle}, thema_level=${themaLevel},
-		thema_content=${themaContent}, thema_img=${themaImg} where thema_num = ${themaNum}
+		update themas set thema_title = #{themaTitle}, thema_level = #{themaLevel}, thema_content = #{themaContent}, thema_img = #{themaImg} where thema_no = #{themaNo}
 	</update>
 	
 	<update id="deleteThema" parameterType="thema">
-		update themas set thema_title=null, thema_level=0},
-		thema_content=null, thema_tmg=null where thema_num = ${themaNum}
+		update themas set thema_title=#{themaTitle}, thema_level=0, thema_content='준비중', thema_Img='comingsoon.png' where thema_no = #{themaNo}
 	</update>
+	
+	<select id="getThema" parameterType="thema" resultType="thema">
+		select thema_title themaTitle, thema_no themaNo, thema_level themaLevel, thema_content themaContent, thema_img themaImg, thema_price themaPrice from themas where thema_no = #{themaNo}
+	</select>
 </mapper>

@@ -16,12 +16,17 @@ public class ThemaServiceImpl implements ThemaService {
 		return themaDao.getThemas();
 	}
 
-	public int updateThema() {
-		return themaDao.updateThema();
+	public boolean updateThema(Thema thema) {
+		return themaDao.updateThema(thema) > 0;
 	}
 
-	public int deleteThema() {
-		return themaDao.deleteThema();
+	public boolean deleteThema(Thema thema) {
+		System.out.println("ThemaServiceImpl");
+		return themaDao.deleteThema(thema) > 0;
+	}
+	
+	public Thema getThema(char themaNo){
+		return themaDao.getThema(themaNo);
 	}
 
 }

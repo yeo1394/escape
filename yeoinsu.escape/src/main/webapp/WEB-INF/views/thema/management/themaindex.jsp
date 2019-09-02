@@ -32,11 +32,9 @@
 <style>
 	@import url("<c:url value="/css/basicStyle.css"/>");
 	@import url('https://fonts.googleapis.com/css?family=Metal+Mania&display=swap');
-	
 	#index div{
 		margin:auto;
 		color:white;
-		border:1px solid white;
 	}
 	#index{
 		height: 80%;
@@ -46,28 +44,46 @@
 	}
 	.row{
 		height:90%;
+		border:1px solid white;
 	}
 	.col-md-6{
 		height: 95%;
 		padding:0;
 		font-family: 'Poor Story', cursive;
 	}
-	#title,#subtitle,#Dif,#number{
+	#title{
 		height:20%;
+		padding-top:5%;
+		font-size:50px;
+		width:93%
+	}
+	#number{
+		height:5%;
+		width:7%;
+		padding:0%;
+		border:1px solid white;
+		text-align:center;
+		font-size:x-large;
+		background-color:gray;
 	}
 	#ex{
+		border-top:1px solid white;
 		height:40%;
+	}
+	#Dif{
+		border-top:1px solid white;
 	}
 	#check{
 		margin-top:2%;
-	 	margin-left:45%;
+	 	margin-left:30%;
 		/*  */
 		border: 4px inset gray;
 		font-weight: bold;
 		font-family: 'Poor Story', cursive;
 		font-size: 11px;
-		width:auto;
+		width:40%;
 		height:auto;
+		font-size:23px;
 		/*  */
 	}
 	img{
@@ -79,14 +95,34 @@
 		height: 100px;
 		border :  solid white 1px;
 	} */
-	
+	li>a{
+		margin-top: 15px;
+	}
+	div textarea{
+		padding-right:0;
+		padding-left:2px;
+		border-style:none;
+		width:100%;
+		height:100%;
+		text-align:left;
+		font-size:20px;
+	}
+	#ex{
+		height:60%;
+	}
+	#imgbox00{
+		border-right:1px solid white;
+	}
 	@media (min-width: 0px) and (max-width: 1023px){
 		#check{
 			margin-left:30%;
 			margin-top: 3%;
+			width:auto;
+			font-size:10px;
 		}
 		#ex{
-			height:auto;
+			float:right;
+			height:60%;
 		}
 		#timg{
 			width:inherit*2;
@@ -99,17 +135,32 @@
 		#logoimg{
 		margin-top:25%;
 		margin-left:25%;
-			width :120px;
-			height: 50px;
+		width :120px;
+		height: 50px;
+		}
+		#Dif{
+			float:left;
+		}
+		#title{
+		float:left;
+		width:92.8%;
+		font-size:22px;
+		}
+		#number{
+		float:right;
+		font-size: inherit;
+		}
+		div textarea{
+			font-size:15px;
 		}
 	}
 	
-	li>a{
-		margin-top: 15px;
-	}
-		
 </style>
 <script>
+
+var str = document.getElementById("textarea").value;
+str= str.replace(/(?:\r\n|\r|\n)/g,'<br />');
+document.getElementById("result").value = str;
 
 </script>
 <header>
@@ -151,12 +202,14 @@
 			</div>
 			<div class="col-md-6" style="float: right; width:50%; height:100%;">
 				<div class="row">
-					<div class="col-md-10" id="title">${post.themaTitle}</div>
-					<div class="col-md-2" id="number">${post.themaNo}</div>
-					<div class="col-md-12" id="Dif">
+					<div class="col-md-10" id="title" >${post.themaTitle}</div>
+					<div class="col-md-2" id="number" >${post.themaNo}</div>
+					<div class="col-md-12" id="Dif" style="height:20%;">
 						<img src="<c:url value="/img/star0${post.themaLevel}.png"/>"/>
 					</div>
-					<div class="col-md-12" id="ex">${post.themaContent}</div>
+					<div class="col-md-12" id="ex">
+						<textarea style="background-color:#222;" disabled>${post.themaContent}</textarea>
+					</div>
 				</div>
 				<button class="btn btn-default" id="check">예약하기</button>
 			</div>
