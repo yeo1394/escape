@@ -13,12 +13,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li><a href="#">&emsp;GUIDE</a></li>
-				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
-				<li><a href="party">&emsp;PARTY</a></li>
-				<li><a href="#">&emsp;NOTICE</a></li>
-				<li><a href="#">&emsp;Q&A</a></li>
+				<li><a href="${pageContext.request.contextPath}/info/guide">&emsp;GUIDE</a></li>
+				<li><a href="${pageContext.request.contextPath}">&emsp;BOOKING</a></li>
+				<li><a href="${pageContext.request.contextPath}thema/themaindex">&emsp;THEMA</a></li>
+				<li><a href="${pageContext.request.contextPath}">&emsp;PARTY</a></li>
+				<li><a href="${pageContext.request.contextPath}">&emsp;NOTICE</a></li>
+				<li><a href="${pageContext.request.contextPath}">&emsp;Q&A</a></li>
 		</ul>
 		</div>
 	</div>

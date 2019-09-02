@@ -53,9 +53,86 @@
 	div>div>div{
 		color: white;
 	}
+	a#mb1{
+      width: 50%;   
+      float: left;
+      background-color : #222;
+      border: 4px outset gray;
+      color: gray;
+      
+   }
+   a#mb2{
+      width:25%;
+      float: left;
+      background-color : #222;
+      border : 4px outset gray;
+      color: gray;
+      
+   }
+   a#mb3{
+      width:25%;
+      float: right;
+      background-color : #222;
+      border : 4px outset gray;
+      color: gray;
+      
+   }
+   
+  #logo{
+  	z-index: 9999;
+  	position: absolute;
+  	margin-top:0.5%;
+  	margin-left: 6%;
+  	width:180px;
+  	height:80px;
+  }
+  
+  #carimg{
+  	width: 100%;
+  	height: 726px;
+  }
+  
+  #siximg{
+	width: 100%;
+	height: 100%; 
+  }
+  
+  @media ( min-width :0px) and (max-width:1023px)  {
+	#logo{
+		width: 90px;
+		height: 40px;
+	}
+ 	#siximg{
+		width:100%;
+		height:100%;
+	} 
 </style>
 <header>
 	<%@include file ="../resource/include/header.jsp" %>
+</header>
+<body>
+	<a href="main"><img id="logo" src="img/logo.png" ></a>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li><a href="info/guide">&emsp;GUIDE</a></li>
+				<li><a href="#">&emsp;BOOKING</a></li>
+				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
+				<li><a href="#">&emsp;PARTY</a></li>
+				<li><a href="#">&emsp;NOTICE</a></li>
+				<li><a href="#">&emsp;Q&A</a></li>
+		</ul>
+		</div>
+	</div>
+</nav>
 </header>
 <body>
 	<div class="container-fluid" id="heightAuto">
@@ -76,19 +153,19 @@
 		<div class="carousel-inner">
 		<c:forEach var="post" items="${Themalist}" begin="0" end="0" >
 			<div class="item active">
-				${post.themaImg}
+				<img id="carimg" src="<c:url value="/img/"/>${post.themaImg}">
 			</div>
 		</c:forEach>
 		
 		<c:forEach var="post" items="${Themalist}" begin="1" end="4" >
 			<div class="item">
-				${post.themaImg}
+				<img id="carimg" src="<c:url value="/img/"/>${post.themaImg}">
 			</div>
 		</c:forEach>
 			
 		<c:forEach var="post" items="${Themalist}" begin="5" >
 			<div class="item">
-				${post.themaImg}
+				<img id="carimg" src="<c:url value="/img/"/>${post.themaImg}">
 				<div class="carousel-caption">
 				</div>
 			</div>
@@ -109,14 +186,14 @@
 		
 	</div>
 	<div class="container-fluid" id="sixThema">
-	<c:forEach var="post" items="${Themalist}">
+		<c:forEach var="post" items="${Themalist}">
 			<div class="col-md-4">
 				<div class="imgbox">
-					${post.themaImg}
+					<img id="siximg" src="<c:url value="/img/"/>${post.themaImg}">
 				</div>
 			</div>
 		</c:forEach>
-		</div>
+	</div>
 
 </body>
 
