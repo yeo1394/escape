@@ -109,6 +109,7 @@
 	span#gol{
 		color:white;
 	}
+	
 </style>
 <script>
 	var isCheck = function() {
@@ -118,7 +119,6 @@
 		}
 		return result;
 	}
-	
 	var init = function() {
 		$("#userTel, #email1, #email2, #userName, #userId, #userPw, #userPw2").blur(function(){
 			var btn = document.getElementById('join');

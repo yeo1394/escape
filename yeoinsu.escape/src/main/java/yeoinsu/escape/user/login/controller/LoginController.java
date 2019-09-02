@@ -92,5 +92,50 @@ public class LoginController {
 		return "redirect:../main";
 	}
 	
+	@RequestMapping("/findUser")
+	@ResponseBody
+	public User findUser(String userName, HttpSession session){
+		User user = loginService.findUser(userName);
+		if(user != null && !user.equals("")){
+			session.setAttribute("fUser", user);
+		}
+		return loginService.findUser(userName);
+	}
 	
+	
+	@RequestMapping("/findPw")
+	@ResponseBody
+	public User findPw(String userId, HttpSession session){
+		User user = loginService.getUser(userId);
+		if(user != null && !user.equals("")){
+			session.setAttribute("pUser", user);
+		}
+		return loginService.getUser(userId);
+		
+	}
+	
+	@RequestMapping("/newPw")
+	public String newPw(String userId, String userPw, String userPw2, HttpSession session){
+			loginService.newPw(userId, userPw);
+		return "redirect:/main";
+	}
+	
+	@RequestMapping("/findId1")
+	public String findId1(){
+		return "user/find/findId1";
+	}
+	
+	@RequestMapping("/findId2")
+	public String findId2(){
+		return "user/find/findId2";
+	}
+	
+	@RequestMapping("/findPw1")
+	public String findPw1(){
+		return "user/find/findPw1";
+	}
+	@RequestMapping("/findPw2")
+	public String findPw2(){
+		return "user/find/findPw2";
+	}
 }

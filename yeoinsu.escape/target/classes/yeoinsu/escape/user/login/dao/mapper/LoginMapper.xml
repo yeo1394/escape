@@ -27,4 +27,15 @@
 	<select id="getMails" resultType="string">
 		select user_mail from users
 	</select>
+	
+	<!-- 아이디찾기 -->
+	<select id="findUserInfo" parameterType="String" resultType="user">
+		select user_id userId, user_pw userPw, user_name userName, user_tel userTel,
+		user_mail userMail, user_point userPoint  from users where user_name = #{userName}
+	</select>
+	
+	<!-- 새로운비번 -->
+	<update id="newPw2" parameterType="string">
+		update users set user_pw = #{userPw} where user_id = #{userId}
+	</update>
 </mapper>

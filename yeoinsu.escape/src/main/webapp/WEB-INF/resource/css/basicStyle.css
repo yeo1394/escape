@@ -103,3 +103,9 @@
       color: gray;
       
    }
+   input:focus{ 
+		outline:none; 
+	}
+	#email2:focus{
+		outline:none; 
+	}

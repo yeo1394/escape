@@ -34,4 +34,12 @@ public class LoginDaoImpl implements LoginDao{
 		return loginMapper.getMails();
 	}
 	
+	public User findUserInfo(String userName){
+		return loginMapper.findUserInfo(userName);
+	}
+
+	public int newPw2(String userId,String userPw){
+		return loginMapper.newPw2(userId, userPw);
+	}
+	
 }

@@ -147,7 +147,7 @@
 	<div class="container-fluid" id="index">
 		<div class="row">
 			<div class="col-md-6" style="float: left; width: 50%; height:100%;">
-				<img id="timg" alt="joker" src="${post.themaImg}" width="100%" height="100%">
+				<img id="timg" alt="${post.themaImg}" src="<c:url value="/img/"/>${post.themaImg}" width="100%" height="100%">
 			</div>
 			<div class="col-md-6" style="float: right; width:50%; height:100%;">
 				<div class="row">

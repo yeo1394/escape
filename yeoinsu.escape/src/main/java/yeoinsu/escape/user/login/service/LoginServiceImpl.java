@@ -34,4 +34,12 @@ public class LoginServiceImpl implements LoginService{
 		return loginDao.getMails();
 	}
 	
+	public User findUser(String userName){
+		return loginDao.findUserInfo(userName);
+	}
+
+	public int newPw(String userId,String userPw) {
+		return loginDao.newPw2(userId, userPw);
+	}
+	
 }

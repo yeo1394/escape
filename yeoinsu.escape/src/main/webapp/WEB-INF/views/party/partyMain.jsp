@@ -48,7 +48,7 @@ var init = function () {
 								'<td>'+party.partyWriter+'</td>'+
 								'<td>'+party.partyDate+'</td>'+
 								'<td><span class="badge">'+party.partyHits+'</span></td>'+
-							'<tr>'
+							'</tr>'
 						);
 					});
 					$('#partyList').append(partyList.join(''));
@@ -74,7 +74,7 @@ var init = function () {
 					var end = Number(page.endPage)+1
 					var a = '<ul class="pagination">'
 					if(page.prev==true){
-						a+='<li><a name="pageCnt" id="'+start+'">&laquo;</a></li>'
+						a+='<li><a class="btn" name="pageCnt" id="'+start+'">&laquo;</a></li>'
 					}
 					
 						
@@ -91,7 +91,7 @@ var init = function () {
 						a+='</li>'
 					}
 					if(page.next==true){
-						a+='<li><a id="'+end+'">&raquo;</a></li>'
+						a+='<li><a class="btn" id="'+end+'">&raquo;</a></li>'
 					}
 					a+='</ul>' 
 					$('#pageB').html(a);
@@ -173,6 +173,16 @@ a {
 a:hover {
 	color: white;
 }
+
+.pagination>li>a, .pagination>li>span {
+    color: white;
+    background-color: rgb(80,80,80);
+    border: 1px solid black;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: rgb(50,50,50);
+    border-color: black;
+}
 </style>
 <%if(session.getAttribute("nowUser") == null){ %>
 	<c:redirect url="/login"/>
@@ -231,7 +241,7 @@ a:hover {
 		<div id="pageB" class="text-center">
 			<ul class="pagination">
 				<c:if test="${pageMaker.prev}">
-					<li><a id="${pageMaker.startPage-1}">&laquo;</a></li>
+					<li><a class="btn" id="${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
 				
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -239,7 +249,7 @@ a:hover {
 					<a class="btn" name="pageCnt" id="${idx}" value="${idx}">${idx}</a>
 				</c:forEach>
 				<c:if test="${pageMaker.next}">
-					<li><a id="${pageMaker.endPage+1}">&raquo;</a></li>
+					<li><a class="btn" id="${pageMaker.endPage+1}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>

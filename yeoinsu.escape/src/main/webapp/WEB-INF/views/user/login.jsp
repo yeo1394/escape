@@ -136,7 +136,7 @@
 					</form>
 					<br>
 					<div id="subGnb">
-						<a href="#">아이디찾기</a>│<a href="#">비밀번호찾기</a>│<a href="login/agreement">회원가입</a>
+						<a href="login/findId1">아이디찾기</a>│<a href="login/findPw1">비밀번호찾기</a>│<a href="login/agreement">회원가입</a>
 					</div>
 				</div>
 		</div>

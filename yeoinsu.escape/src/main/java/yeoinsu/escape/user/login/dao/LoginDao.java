@@ -9,4 +9,6 @@ public interface LoginDao {
 	int updateUser(User user);
 	int deleteUser(String userId);
 	String[] getMails();
+	User findUserInfo(String userName);
+	int newPw2(String userId,String userPw);
 }

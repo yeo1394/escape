@@ -9,4 +9,6 @@ public interface LoginService {
 	boolean correctUser(User user);
 	boolean secedeUser(String userId);
 	String[] getMails();
+	User findUser(String userName);
+	int newPw(String userId, String userPw);
 }
