@@ -78,15 +78,6 @@
       
    }
    
-  #logo{
-  	z-index: 9999;
-  	position: absolute;
-  	margin-top:0.5%;
-  	margin-left: 6%;
-  	width:180px;
-  	height:80px;
-  }
-  
   #carimg{
   	width: 100%;
   	height: 726px;
@@ -98,10 +89,6 @@
   }
   
   @media ( min-width :0px) and (max-width:1023px)  {
-	#logo{
-		width: 90px;
-		height: 40px;
-	}
  	#siximg{
 		width:100%;
 		height:100%;
@@ -109,30 +96,6 @@
 </style>
 <header>
 	<%@include file ="../resource/include/header.jsp" %>
-</header>
-<body>
-	<a href="main"><img id="logo" src="img/logo.png" ></a>
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li><a href="info/guide">&emsp;GUIDE</a></li>
-				<li><a href="#">&emsp;BOOKING</a></li>
-				<li><a href="thema/themaindex">&emsp;THEMA</a></li>
-				<li><a href="#">&emsp;PARTY</a></li>
-				<li><a href="#">&emsp;NOTICE</a></li>
-				<li><a href="#">&emsp;Q&A</a></li>
-		</ul>
-		</div>
-	</div>
-</nav>
 </header>
 <body>
 	<div class="container-fluid" id="heightAuto">

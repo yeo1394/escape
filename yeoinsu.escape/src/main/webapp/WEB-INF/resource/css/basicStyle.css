@@ -3,6 +3,14 @@
 		background-color: #222;
 	
 	}
+#logo{
+  	z-index: 9999;
+  	position: absolute;
+  	margin-top:0.5%;
+  	margin-left: 6%;
+  	width:180px;
+  	height:80px;
+  }
 	.container-fluid{
 		height: 100%;
 	}
@@ -27,13 +35,6 @@
 		letter-spacing: 1.5px;
 	}
 
-	.navbar-brand {
-		border:solid 2px white;
- 		transform: translateX(-50%);
-  		left: 20%;
-  		position: absolute;
-  		line-height: 50%;
-	}
 	header{
 		background-color: #222;
 	}
@@ -101,5 +102,9 @@
       background-color : #222;
       border : 4px outset gray;
       color: gray;
-      
    }
+   @media ( min-width :0px) and (max-width:1023px)  {
+	#logo{
+		width: 90px;
+		height: 40px;
+	}
