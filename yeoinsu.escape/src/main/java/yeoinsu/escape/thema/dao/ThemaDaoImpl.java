@@ -24,7 +24,15 @@ public class ThemaDaoImpl implements ThemaDao {
 		return themaMapper.deleteThema(thema);
 	}
 
-	public Thema getThema(char themaNo){
+	public Thema getThema(String themaNo){
 		return themaMapper.getThema(themaNo);
+	}
+	
+	public Thema getThemaTitle(String thTitle){
+		return themaMapper.getThemaTitle(thTitle);
+	}
+
+	public Thema getThemaP(String themaTitle) {
+		return themaMapper.getThemaP(themaTitle);
 	}
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.booking.dao.mapper.BookingMapper">
+	<insert id="addBooking" parameterType="booking">
+		insert into
+		bookings(booking_no, booking_name, booking_tel, booking_mail,
+		booking_price, booking_cnt, sche_no) values
+		( bookings_no_seq.nextval, #{bookName}, #{bookTel},
+		#{bookMail}, #{bookPrice}, #{bookCnt}, #{scheNo})
+	</insert>
+	
+	<select id="getBooking" parameterType="string" resultType="booking">
+		select booking_name bookName, booking_tel bookTel, booking_mail bookMail,
+		booking_price bookPrice, booking_cnt bookCnt, sche_no scheNo
+		from bookings
+		where booking_name = #{bookName} and booking_tel = #{bookTel}
+	</select>
+	
+	<select id="getBookTel" parameterType="string" resultType="booking">
+		select booking_name bookName, booking_tel bookTel, booking_mail bookMail,
+		booking_price bookPrice, booking_cnt bookCnt, sche_no scheNo
+		from bookings
+		where booking_tel = #{bookTel}
+	</select>
+	
+	<delete id="delBooking" parameterType="int">
+	delete from bookings where sche_no =#{scheNo}
+	</delete>
+</mapper>

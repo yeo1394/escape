@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import yeoinsu.escape.thema.domain.Thema;
 import yeoinsu.escape.thema.service.ThemaService;
@@ -30,15 +31,10 @@ public class ThemaController {
 	}
 	@RequestMapping(value="/modify",method = RequestMethod.POST)
 	public String updateThema(Thema thema, HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
-		System.out.println("★★★themaTitle : "+thema.getThemaTitle()+"★★★");
-		System.out.println("★★★themaNo : "+thema.getThemaNo()+"★★★");
-		System.out.println("★★★themalevel : "+thema.getThemaLevel()+"★★★");
-		System.out.println("★★★themaContent : "+thema.getThemaContent()+"★★★");
-		System.out.println("★★★themaImg : "+thema.getThemaImg()+"★★★");
 		if(thema.getThemaImg() == null || thema.getThemaImg()==""){
 			Thema oldThema = themaService.getThema(thema.getThemaNo());
 			themaService.updateThema(new Thema(thema.getThemaTitle(),thema.getThemaNo(),
-					thema.getThemaLevel(),thema.getThemaContent(),oldThema.getThemaImg(),oldThema.getThemaPrice()));
+					thema.getThemaLevel(),thema.getThemaContent(),oldThema.getThemaImg()));
 		}else{
 			themaService.updateThema(thema);
 		}
@@ -49,15 +45,18 @@ public class ThemaController {
 	
 	@RequestMapping(value="/secede",method = RequestMethod.POST)
 	public String secede(Thema thema){
-		System.out.println("★★★themaTitle : "+thema.getThemaTitle()+"★★★");
-		System.out.println("★★★themaNo : "+thema.getThemaNo()+"★★★");
-		System.out.println("★★★themalevel : "+thema.getThemaLevel()+"★★★");
-		System.out.println("★★★themaContent : "+thema.getThemaContent()+"★★★");
-		System.out.println("★★★themaImg : "+thema.getThemaImg()+"★★★");
-		char no = thema.getThemaNo();
-		String no2 = no+"no";
+		String no = thema.getThemaNo();
+		String no2 = no+"번 준비중";
 		thema.setThemaTitle(no2);
 		themaService.deleteThema(thema);
 		return "thema/complete";
+	}
+	
+	@RequestMapping("/getThemas")
+	@ResponseBody
+	public List<Thema> getThemas(HttpSession session){
+		List<Thema> thema = themaService.getThemas();
+		session.setAttribute("themalist", thema);
+		return themaService.getThemas();
 	}
 }

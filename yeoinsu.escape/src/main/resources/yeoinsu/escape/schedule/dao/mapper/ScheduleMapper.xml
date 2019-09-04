@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.schedule.dao.mapper.ScheduleMapper">
+	<select id="getSchedules" resultType="schedule">
+		select sche_no scheNo, sche_time scheTime, thema_title scheTitle, 
+		sche_level scheLevel, sche_state scheState from schedule 
+	</select>
+	
+	<select id="getSchedule" parameterType="string" resultType="schedule">
+		select sche_no scheNo, sche_time scheTime, thema_title scheTitle, 
+		sche_level scheLevel, sche_state scheState
+		from schedule
+		where thema_title = #{scheTitle}
+	</select>
+	
+	<select id="getScheno" parameterType="int" resultType="schedule">
+		select sche_no scheNo, sche_time scheTime, thema_title scheTitle, 
+		sche_level scheLevel, sche_state scheState
+		from schedule
+		where sche_no = #{scheNo}
+	</select>
+	
+	<select id="getSchestate" parameterType="int" resultType="schedule">
+		select sche_no scheNo, sche_time scheTime, thema_title scheTitle, 
+		sche_level scheLevel, sche_state scheState
+		from schedule
+		where sche_state = #{scheState}
+	</select>
+	<update id="updateSche" parameterType="int">
+		update schedule
+		set sche_state = 1
+		where sche_no =#{scheNo}
+	</update>
+	
+	<update id="updateSche2" parameterType="int">
+		update schedule
+		set sche_state = 0
+		where sche_no =#{scheNo}
+	</update>
+	
+	<delete id="delBooking" parameterType="int">
+		delete bookings where sche_no = #{scheNo}
+	</delete>
+	
+</mapper>

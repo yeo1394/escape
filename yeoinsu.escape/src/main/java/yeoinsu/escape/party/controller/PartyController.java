@@ -16,6 +16,7 @@ import yeoinsu.escape.party.domain.PartyComment;
 import yeoinsu.escape.party.service.PageServiceImpl;
 import yeoinsu.escape.party.service.PartyComService;
 import yeoinsu.escape.party.service.PartyService;
+import yeoinsu.escape.thema.service.ThemaService;
 import yeoinsu.escape.user.login.domain.User;
 
 @Controller
@@ -23,7 +24,7 @@ import yeoinsu.escape.user.login.domain.User;
 public class PartyController {
 	@Autowired PartyService partyService;
 	@Autowired PartyComService partyComService;
-	/*@Autowired PageService pageService;*/
+	@Autowired ThemaService themaService;
 	
 	@RequestMapping
 	public String Party(HttpServletRequest request,HttpSession session) {
@@ -44,15 +45,18 @@ public class PartyController {
 	
 	@RequestMapping("/in")
 	public String Content(HttpServletRequest request,int pageCnt) {
-		System.out.println(pageCnt);
-		request.setAttribute("Content",partyService.getParty(pageCnt));
+		Party party = partyService.getParty(pageCnt);
+		request.setAttribute("Content",party);
+		String themaTitle = party.getPartyThema();
+	    request.setAttribute("Thema", themaService.getThemaP(themaTitle));
 		partyService.hitUpdate(pageCnt);
 		request.setAttribute("Comment",partyComService.getCom(pageCnt));
 		return "/party/partyContent";
 	}
 	
 	@RequestMapping("/add")
-	public String Add(){
+	public String Add(HttpServletRequest request){
+		request.setAttribute("thema", themaService.getThemas());
 		return "/party/partyAdd";
 	}
 	
@@ -67,7 +71,7 @@ public class PartyController {
 	
 	@RequestMapping("/updateIn")
 	public String UpdateIn(String partyThema,String partyTime,String partyContent,
-			HttpSession session, int partyNo) {
+			HttpSession session, int partyNo,HttpServletRequest request) {
 		User user = (User)session.getAttribute("nowUser");
 		String userId = user.getUserId();
 		Party party = new Party(partyThema,partyTime,partyContent,userId);
@@ -89,6 +93,7 @@ public class PartyController {
 	@RequestMapping("/update")
 	public String Update(int partyNo,HttpServletRequest request) {
 		request.setAttribute("party", partyService.getParty(partyNo));
+		request.setAttribute("thema", themaService.getThemas());
 		return "/party/partyAdd";
 	}
 	

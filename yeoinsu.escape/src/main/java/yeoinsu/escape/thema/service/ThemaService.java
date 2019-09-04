@@ -8,6 +8,7 @@ public interface ThemaService {
 	List<Thema> getThemas();
 	boolean updateThema(Thema thema);
 	boolean deleteThema(Thema thema);
-	
-	Thema getThema(char themaNo);
+	Thema getThemaTitle (String thTitle);
+	Thema getThema(String themaNo);
+	Thema getThemaP(String themaTitle);
 }

@@ -8,5 +8,7 @@
 		<typeAlias alias="page" type="yeoinsu.escape.party.domain.Page"/>
 		<typeAlias alias="partyCom" type="yeoinsu.escape.party.domain.PartyComment"/>
 		<typeAlias alias="thema" type="yeoinsu.escape.thema.domain.Thema"/>
+		<typeAlias type="yeoinsu.escape.schedule.domain.Schedule" alias="schedule"/>
+		<typeAlias type="yeoinsu.escape.booking.domain.Booking" alias="booking"/>
 	</typeAliases>
 </configuration>

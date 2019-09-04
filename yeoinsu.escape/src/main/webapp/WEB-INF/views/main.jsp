@@ -152,16 +152,14 @@
 		<c:forEach var="post" items="${Themalist}">
 			<div class="col-md-4">
 				<div class="imgbox">
-					<img id="siximg" src="<c:url value="/img/"/>${post.themaImg}">
+					<a href="thema/themaindex#${post.themaNo }"><img id="siximg" src="<c:url value="/img/"/>${post.themaImg}"></a>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
 
 </body>
-
 	<%@include file ="../resource/include/footnav.jsp" %>
-
 <footer>
 	<%@include file ="../resource/include/footer.jsp" %>
 </footer>

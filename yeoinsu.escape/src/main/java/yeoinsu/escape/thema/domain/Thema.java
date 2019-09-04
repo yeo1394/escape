@@ -2,22 +2,21 @@ package yeoinsu.escape.thema.domain;
 
 public class Thema {
 	private String themaTitle;
-	private char themaNo;
-	private char themaLevel;
+	private String themaNo;
+	private int themaLevel;
 	private String themaContent;
 	private String themaImg;
 	private int themaPrice;
 	
 	public Thema(){}
 	
-	public Thema(String themaTitle, char themaNo, char themaLevel, String themaContent,
-			String themaImg, int themaPrice){
+	public Thema(String themaTitle, String themaNo, int themaLevel, String themaContent,
+			String themaImg){
 		this.themaTitle = themaTitle;
 		this.themaNo = themaNo;
 		this.themaLevel = themaLevel;
 		this.themaContent = themaContent;
 		this.themaImg = themaImg;
-		this.themaPrice = themaPrice;
 	}
 	
 	public int getThemaPrice() {
@@ -34,16 +33,16 @@ public class Thema {
 	public void setThemaTitle(String themaTitle) {
 		this.themaTitle = themaTitle;
 	}
-	public char getThemaNo() {
+	public String getThemaNo() {
 		return themaNo;
 	}
-	public void setThemaNo(char themaNo) {
+	public void setThemaNo(String themaNo) {
 		this.themaNo = themaNo;
 	}
-	public char getThemaLevel() {
+	public int getThemaLevel() {
 		return themaLevel;
 	}
-	public void setThemaLevel(char themaLevel) {
+	public void setThemaLevel(int themaLevel) {
 		this.themaLevel = themaLevel;
 	}
 	public String getThemaContent() {

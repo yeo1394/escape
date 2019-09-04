@@ -32,13 +32,13 @@ public class MailServiceImpl implements MailService{
 			mailSender.send(message);
 	}
 
-	public void send(Message msg) {
+	public void send(String userMail, String userName, String txt) {
 		MimeMessage message = mailSender.createMimeMessage();
 		try{
 			message.setFrom(new InternetAddress("dlstn1030@gmail.com"));
-			message.addRecipient(RecipientType.TO, new InternetAddress(msg.getTo()));
-			message.setSubject(msg.getSubject());
-			message.setText(msg.getTxt(),"utf-8","html");
+			message.addRecipient(RecipientType.TO, new InternetAddress(userMail));
+			message.setSubject(userName+"님의 예약 내역입니다.");
+			message.setText(txt,"utf-8","html");
 		}catch(Exception e){}
 			mailSender.send(message);
 	}

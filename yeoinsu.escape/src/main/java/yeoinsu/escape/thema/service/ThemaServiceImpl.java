@@ -25,8 +25,15 @@ public class ThemaServiceImpl implements ThemaService {
 		return themaDao.deleteThema(thema) > 0;
 	}
 	
-	public Thema getThema(char themaNo){
+	public Thema getThema(String themaNo){
 		return themaDao.getThema(themaNo);
 	}
+	
+	public Thema getThemaTitle(String thTitle){
+		return themaDao.getThemaTitle(thTitle);
+	}
 
+	public Thema getThemaP(String themaTitle) {
+		return themaDao.getThemaP(themaTitle);
+	}
 }

@@ -18,4 +18,17 @@
 	<select id="getThema" parameterType="thema" resultType="thema">
 		select thema_title themaTitle, thema_no themaNo, thema_level themaLevel, thema_content themaContent, thema_img themaImg, thema_price themaPrice from themas where thema_no = #{themaNo}
 	</select>
+	
+	<select id="getThemaTitle" parameterType="string" resultType="thema">
+		select thema_price themaPrice, thema_title themaTitle, thema_no themaNo, thema_level themaLevel,
+		thema_content themaContent, thema_img themaImg
+		from themas where thema_title = #{themaTitle}
+	</select>
+	
+	<select id="getThemaP" parameterType="string" resultType="thema">
+      select thema_title themaTitle, thema_no themaNo, thema_level themaLevel,
+      thema_content themaContent, thema_img themaImg, thema_price themaPrice from themas
+      where thema_title = #{themaTitle}
+   </select>
+   
 </mapper>
