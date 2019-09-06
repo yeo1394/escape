@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yeoinsu.escape.question.dao.mapper.QuestionMapper">
+	<select id="questionlist" parameterType="qpage" resultMap="questionMap">
+	<![CDATA[ 
+		select * from ( select rownum as rnum, x.*
+		from( select * from questions order by que_no desc )x 
+		where rownum <= #{rowCnt}*#{currentPage} ) 
+		where rnum > #{rowCnt}*(#{currentPage}-1) 
+	]]>
+	</select>
+
+	<select id="getpage" resultType="question">
+		select count(que_no) page from questions
+	</select>
+	
+	<select id="getquestion" parameterType="int" resultType="question">
+		select que_no queNo, que_title queTitle, que_writer queWriter, que_date queDate,
+		que_hits queHits, que_content queContent, user_id userId
+		from questions where que_no = #{queNo}
+	</select>
+	
+	<insert id="questionadd" parameterType="question">
+		insert into questions (que_no, que_title, que_content, que_writer, user_id, que_date, que_hits)
+		values (que_no_seq.nextval,#{queTitle},#{queContent},#{queWriter},#{userId},SYSDATE,0)
+	</insert>
+		
+	<update id="questionupdate" parameterType="question">
+		update questions set que_title = #{queTitle},  que_content = #{queContent}
+		where que_no = #{queNo}
+	</update>
+	
+	<delete id="questiondelete" parameterType="int">
+		delete from questions where que_no = #{queNo}
+	</delete>
+	
+	<update id="updateViewCnt">
+		update questions set que_hits = que_hits+1 where que_no = #{queNo}
+	</update>
+	
+	<resultMap id="questionMap" type="question">
+		<id property="queNo" column="que_no"/>
+		<result property="queTitle" column="que_title"/>
+		<result property="queWriter" column="que_writer"/>
+		<result property="queContent" column="que_content"/>
+		<result property="queDate" column="que_date"/>
+		<result property="queHits" column="que_hits"/>
+	</resultMap>
+	
+</mapper>

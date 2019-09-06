@@ -6,6 +6,7 @@
 <%
 	User users=(User)session.getAttribute("nowUser");
 	Party party = (Party)request.getAttribute("Content");
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -256,7 +257,6 @@ var init1 = function(){
 }
 $(init1);
 </script>
-
 <footer>
 <%@include file ="../../resource/include/footer.jsp" %>
 </footer>

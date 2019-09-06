@@ -183,7 +183,7 @@ document.getElementById("result").value = str;
 						<img src="<c:url value="/img/star0${post.themaLevel}.png"/>"/>
 					</div>
 					<div class="col-md-12" id="ex">
-						<textarea style="background-color:#222;" disabled>${post.themaContent}</textarea>
+						<textarea style="background-color:#222;resize: none;"  disabled>${post.themaContent}</textarea>
 					</div>
 				</div>
 				<a href ="../booking" class="btn btn-default" id="check">예약하기</a>

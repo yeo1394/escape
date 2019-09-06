@@ -1,5 +1,5 @@
-<%@page import="yeoinsu.escape.party.service.PageServiceImpl"%>
-<%@page import="yeoinsu.escape.party.domain.Page"%>
+<%@page import="yeoinsu.escape.party.service.ParPageServiceImpl"%>
+<%@page import="yeoinsu.escape.party.domain.ParPage"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -111,22 +111,21 @@ hr {
 					<hr>
 					<input type="hidden" name="partyNo" value="${party.partyNo}">
 					<span id="Title">테마 선택 : </span> <select
-						class="dropdown-primary select-lg mb-3" id="partyThema"
-						name="partyThema">
-					<c:forEach var="thema" items="${requestScope.thema}">
-                     	<c:if test="${thema.themaLevel ne 48}">    
-                        	<option value="${thema.themaTitle}">${thema.themaTitle}</option>
-                     	</c:if>         
-                 	 </c:forEach>
+						class="dropdown-primary select-lg mb-3" id="partyThema" name="partyThema">
+						<c:forEach var="thema" items="${requestScope.thema}">
+							<c:if test="${thema.themaLevel ne 48}"> 	
+								<option value="${thema.themaTitle}">${thema.themaTitle}</option>
+							</c:if>			
+						</c:forEach>
 					</select>
 					<hr>
 					<span id="Title">시간 선택 : </span> <select
 						class="dropdown-primary select-lg mb-3" name="partyTime">
-						<option value="13:00~14:00">13:00~14:00</option>
+						<option value="10:00~11:00">10:00~11:00</option>
+						<option value="12:00~13:00">12:00~13:00</option>
 						<option value="14:00~15:00">14:00~15:00</option>
 						<option value="16:00~17:00">16:00~17:00</option>
 						<option value="18:00~19:00">18:00~19:00</option>
-						<option value="19:00~20:00">19:00~20:00</option>
 					</select>
 					<hr>
 					<textarea id="inS" name="partyContent"></textarea>
@@ -154,9 +153,7 @@ hr {
 		</div>
 	</div>
 </body>
-
 <%@include file ="../../resource/include/footnav.jsp" %>
-
 <footer>
 <%@include file ="../../resource/include/footer.jsp" %>
 </footer>

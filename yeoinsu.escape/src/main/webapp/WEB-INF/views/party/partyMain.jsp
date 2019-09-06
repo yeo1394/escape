@@ -1,8 +1,13 @@
-<%@page import="yeoinsu.escape.party.service.PageServiceImpl"%>
-<%@page import="yeoinsu.escape.party.domain.Page"%>
+<%@page import="yeoinsu.escape.party.service.ParPageServiceImpl"%>
+<%@page import="yeoinsu.escape.party.domain.ParPage"%>
+<%@page import="java.lang.Math" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	ParPageServiceImpl pageService = (ParPageServiceImpl)request.getAttribute("pageMaker");
+	double pageEnd = Math.ceil((double)pageService.getTotRowCnt()/10);
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,7 +39,7 @@ var init = function () {
 		$("#partyList").empty();
 		var id= $(this).attr('id');
 		$.ajax({
-			url:"page/list",
+			url:"parPage/list",
 			data: {pageCnt :id},
 			 async: false,
 			success: function(partys){
@@ -62,7 +67,7 @@ var init = function () {
 		});
 		
 		$.ajax({
-			url:"page/paging",
+			url:"parPage/paging",
 			data: {pageCnt :id},
 			 async: false,
 			success: function(page){
@@ -74,7 +79,7 @@ var init = function () {
 					var end = Number(page.endPage)+1
 					var a = '<ul class="pagination">'
 					if(page.prev==true){
-						a+='<li><a class="btn" name="pageCnt" id="'+start+'">&laquo;</a></li>'
+						a+='<li><a name="pageCnt" class="btn" id="'+start+'">&laquo;</a></li>'
 					}
 					
 						
@@ -219,13 +224,15 @@ a:hover {
 	
 		<div id="pageB" class="text-center">
 			<ul class="pagination">
+				<c:set var="pageEnd" value="<%=pageEnd %>"/>
 				<c:if test="${pageMaker.prev}">
 					<li><a class="btn" id="${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
-				
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<c:if test="${idx <= pageEnd}">
 					<li <c:out value="${pageMaker.page.currentPage==idx ? 'class=active' :''}"/>>
 					<a class="btn" name="pageCnt" id="${idx}" value="${idx}">${idx}</a>
+				</c:if>	
 				</c:forEach>
 				<c:if test="${pageMaker.next}">
 					<li><a class="btn" id="${pageMaker.endPage+1}">&raquo;</a></li>
@@ -237,10 +244,7 @@ a:hover {
 	</div>		
 	</div>
 </body>
-
 <%@include file ="../../resource/include/footnav.jsp" %>
-
-
 <footer>
 <%@include file ="../../resource/include/footer.jsp" %>
 </footer>

@@ -10,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import yeoinsu.escape.party.domain.Page;
+import yeoinsu.escape.party.domain.ParPage;
 import yeoinsu.escape.party.domain.Party;
 import yeoinsu.escape.party.domain.PartyComment;
-import yeoinsu.escape.party.service.PageServiceImpl;
+import yeoinsu.escape.party.service.ParPageServiceImpl;
 import yeoinsu.escape.party.service.PartyComService;
 import yeoinsu.escape.party.service.PartyService;
 import yeoinsu.escape.thema.service.ThemaService;
@@ -28,15 +28,15 @@ public class PartyController {
 	
 	@RequestMapping
 	public String Party(HttpServletRequest request,HttpSession session) {
-		PageServiceImpl pageService = (PageServiceImpl)session.getAttribute("pageMaker");
+		ParPageServiceImpl pageService = (ParPageServiceImpl)session.getAttribute("pageMaker");
 		if(pageService == null) {
-			Page page = new Page();
+			ParPage page = new ParPage();
 			Party party = partyService.getPage();
-			PageServiceImpl pageServiceImpl = new PageServiceImpl(5,party.getPage(),page);
+			ParPageServiceImpl pageServiceImpl = new ParPageServiceImpl(5,party.getPage(),page);
 			request.setAttribute("pageMaker", pageServiceImpl);
 			request.setAttribute("posts", partyService.getParties(page));
 		}else {
-			Page page = pageService.getPage();
+			ParPage page = pageService.getPage();
 			request.setAttribute("pageMaker", pageService);
 			request.setAttribute("posts", partyService.getParties(page));
 		};
@@ -48,9 +48,10 @@ public class PartyController {
 		Party party = partyService.getParty(pageCnt);
 		request.setAttribute("Content",party);
 		String themaTitle = party.getPartyThema();
-	    request.setAttribute("Thema", themaService.getThemaP(themaTitle));
+		request.setAttribute("Thema", themaService.getThemaP(themaTitle));
 		partyService.hitUpdate(pageCnt);
 		request.setAttribute("Comment",partyComService.getCom(pageCnt));
+		
 		return "/party/partyContent";
 	}
 	
@@ -71,7 +72,7 @@ public class PartyController {
 	
 	@RequestMapping("/updateIn")
 	public String UpdateIn(String partyThema,String partyTime,String partyContent,
-			HttpSession session, int partyNo,HttpServletRequest request) {
+			HttpSession session, int partyNo) {
 		User user = (User)session.getAttribute("nowUser");
 		String userId = user.getUserId();
 		Party party = new Party(partyThema,partyTime,partyContent,userId);
@@ -83,10 +84,13 @@ public class PartyController {
 	@RequestMapping("/com")
 	@ResponseBody
 	public List<PartyComment> Com(HttpSession session,int partyNo,String partyComContent) {
+		System.out.println(partyComContent);
 		User user = (User)session.getAttribute("nowUser");
 		String userId = user.getUserId();
 		PartyComment partyCom = new PartyComment(partyNo,partyComContent,userId);
-		partyComService.addCom(partyCom);
+		if(!partyComContent.equals("")){
+			partyComService.addCom(partyCom);			
+		}
 		return partyComService.getCom(partyNo);
 	}
 	

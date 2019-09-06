@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import yeoinsu.escape.party.dao.PartyDao;
-import yeoinsu.escape.party.domain.Page;
+import yeoinsu.escape.party.domain.ParPage;
 import yeoinsu.escape.party.domain.Party;
 
 @Service
 public class PartyServiceImpl implements PartyService {
 	@Autowired PartyDao partyDao;
 	
-	public List<Party> getParties(Page page) {
+	public List<Party> getParties(ParPage page) {
 		return partyDao.getParties(page);
 	}
 

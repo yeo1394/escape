@@ -17,8 +17,8 @@
 				<li><a href="${pageContext.request.contextPath}/booking">&emsp;BOOKING</a></li>
 				<li><a href="${pageContext.request.contextPath}/thema/themaindex">&emsp;THEMA</a></li>
 				<li><a href="${pageContext.request.contextPath}/party">&emsp;PARTY</a></li>
-				<li><a href="${pageContext.request.contextPath}">&emsp;NOTICE</a></li>
-				<li><a href="${pageContext.request.contextPath}">&emsp;Q&A</a></li>
+				<li><a href="${pageContext.request.contextPath}/notice/noticeList">&emsp;NOTICE</a></li>
+				<li><a href="${pageContext.request.contextPath}/question">&emsp;Q&A</a></li>
 		</ul>
 		</div>
 	</div>
